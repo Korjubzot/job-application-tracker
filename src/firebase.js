@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import firebase from "firebase/compat/app";
 
 const firebaseConfig = {
   apiKey: import.meta.env.REACT_APP_FIREBASE_API_KEY,
@@ -11,7 +11,9 @@ const firebaseConfig = {
   measurementId: import.meta.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 // TODO this might need some modifying in the .env file by adding ""
+// TODO add user authentication/login
 
 const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
-const analytics = getAnalytics(app);
+const auth = firebase.auth();
+
+export { app, auth };

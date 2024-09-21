@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-// TODO figure out why eslint is causing an error here, probably just some misconfiguration or a missing rc file
+// TODO reconfigure linter to stop these errors
 
-function JobListings({ data }) {
+function JobListings({ data, data2, data3 }) {
   return (
+    // TODO turn into a for-in loop
     <div>
-      <table>
+      <table className="w-full">
         <tr>
           <th>Company</th>
           <th>Role</th>
@@ -18,7 +19,33 @@ function JobListings({ data }) {
           <td>{data.role}</td>
           <td>{data.salary}</td>
           <td>
-            <select name="status" id="status">
+            <select name="status" id="status" required>
+              <option value="applied">Applied</option>
+              <option value="rejected">Rejected</option>
+              <option value="interviewing">Interviewing</option>
+              <option value="accepted">Accepted</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>{data2.company}</td>
+          <td>{data2.role}</td>
+          <td>{data2.salary}</td>
+          <td>
+            <select name="status" id="status" required>
+              <option value="applied">Applied</option>
+              <option value="rejected">Rejected</option>
+              <option value="interviewing">Interviewing</option>
+              <option value="accepted">Accepted</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>{data3.company}</td>
+          <td>{data3.role}</td>
+          <td>{data3.salary}</td>
+          <td>
+            <select name="status" id="status" required>
               <option value="applied">Applied</option>
               <option value="rejected">Rejected</option>
               <option value="interviewing">Interviewing</option>
