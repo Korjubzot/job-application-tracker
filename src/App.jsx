@@ -1,5 +1,6 @@
 import "./App.css";
 import JobListings from "./components/jobListings/jobListings";
+import UserAuth from "./components/userAuth/userAuth";
 
 let data = {
   company: "Lionbridge",
@@ -25,6 +26,7 @@ let data3 = {
 function App() {
   return (
     <div className="flex flex-col h-screen">
+      <UserAuth />
       <h1 className="align-top">Job Application Tracker</h1>
       <p className="m-4">
         You can use this tracker to input data on your job applications. Add the
