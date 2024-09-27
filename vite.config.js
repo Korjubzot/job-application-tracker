@@ -7,6 +7,11 @@ config();
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./setupTests.js"],
+  },
   define: {
     // eslint-disable-next-line no-undef
     "process.env": process.env,
