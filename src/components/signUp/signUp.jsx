@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { auth } from "../../firebase";
 
 const PasswordSignUp = () => {
   const [email, setEmail] = useState("");
@@ -8,36 +9,29 @@ const PasswordSignUp = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // instantiate the auth service SDK
-  const auth = getAuth();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "email") setEmail(value);
     if (name === "password") setPassword(value);
   };
 
-  // Handle user sign up with email and password
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // create a new user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-
-      // Pull out user's data from the userCredential property
       const user = userCredential.user;
+      console.log("User signed up:", user);
     } catch (err) {
-      // Handle errors here
       const errorMessage = err.message;
       const errorCode = err.code;
 
       setError(true);
+      console.log(errorCode);
 
       switch (errorCode) {
         case "auth/weak-password":
@@ -87,7 +81,7 @@ const PasswordSignUp = () => {
 
           <div className="signupContainer__box__login">
             <p>
-              Already have an account? <Link to="/signin">Sign In</Link>
+              Already have an account? <Link to="/login">Sign In</Link>
             </p>
           </div>
         </div>

@@ -1,6 +1,10 @@
 import "./App.css";
 import JobListings from "./components/jobListings/jobListings";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./protectedRoute";
+import { AuthProvider } from "./authProvider";
+import PasswordSignIn from "./components/signIn/signIn";
+import PasswordSignUp from "./components/signUp/signUp";
 
 let testData = [
   {
@@ -33,30 +37,43 @@ let testData = [
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col h-screen">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/tracker">Tracker</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-            <li>
-              <button onClick={console.log("signing out...")}>Sign out</button>
-            </li>
-          </ul>
-        </nav>
+    <AuthProvider>
+      <Router>
+        <div className="flex flex-col h-screen">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/tracker">Tracker</Link>
+              </li>
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign Up</Link>
+              </li>
+              <li>
+                <button onClick={console.log("signing out...")}>
+                  Sign out
+                </button>
+              </li>
+            </ul>
+          </nav>
 
-        <Routes>
-          <Route path="/tracker" element={<JobListings data={testData} />} />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            <Route path="/signin" element={<PasswordSignIn />} />
+            <Route path="/signup" element={<PasswordSignUp />} />
+            <Route
+              path="/tracker"
+              element={
+                <ProtectedRoute>
+                  <JobListings data={testData} />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

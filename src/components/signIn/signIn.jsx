@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const PasswordSignIn = () => {
   const [email, setEmail] = useState("");
@@ -8,12 +9,8 @@ const PasswordSignIn = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Instantiate the auth service SDK
-  const auth = getAuth();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "email") setEmail(value);
     if (name === "password") setPassword(value);
   };
@@ -22,19 +19,18 @@ const PasswordSignIn = () => {
     e.preventDefault();
 
     try {
-      // Sign in with email and password in firebase auth service
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-
-      // The signed-in user info
       const user = userCredential.user;
+      console.log("User signed in:", user);
+      setError(false);
+      setErrorMessage("");
     } catch (err) {
-      // Handle Errors here.
-      const errorMessage = err.message;
       const errorCode = err.code;
+      const errorMessage = err.message;
 
       setError(true);
       console.log(errorCode);
@@ -73,21 +69,25 @@ const PasswordSignIn = () => {
               type="email"
               placeholder="Email"
               name="email"
+              value={email}
               onChange={handleChange}
+              required
             />
             <input
               type="password"
               placeholder="Password"
               name="password"
+              value={password}
               onChange={handleChange}
+              required
             />
             <button type="submit">Sign In</button>
-            {error && <p>{errorMessage}</p>}
+            {error && <p className="error-message">{errorMessage}</p>}
           </form>
 
           <div className="signinContainer__box__signup">
             <p>
-              No account? <Link to="/signup">Sign Up</Link>
+              Don&apos;t have an account? <Link to="/signup">Sign Up</Link>
             </p>
           </div>
         </div>
