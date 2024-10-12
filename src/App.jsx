@@ -1,6 +1,6 @@
 import "./App.css";
 import JobListings from "./components/jobListings/jobListings";
-import UserAuth from "./components/userAuth/userAuth";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 let testData = [
   {
@@ -33,19 +33,30 @@ let testData = [
 
 function App() {
   return (
-    <div className="flex flex-col h-screen">
-      <UserAuth />
-      <h1 className="align-top">Job Application Tracker</h1>
-      <p className="m-4">
-        You can use this tracker to input data on your job applications. Add the
-        company, role, salary, and current status.
-      </p>
-      <p className="m-4">
-        Times are tough right now. Keep your head up and remember that you are
-        not your job.
-      </p>
-      <JobListings data={testData} />
-    </div>
+    <Router>
+      <div className="flex flex-col h-screen">
+        <nav>
+          <ul>
+            <li>
+              <Link to="/tracker">Tracker</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            <li>
+              <button onClick={console.log("signing out...")}>Sign out</button>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/tracker" element={<JobListings data={testData} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

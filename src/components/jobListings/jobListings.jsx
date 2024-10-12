@@ -6,6 +6,15 @@ import React from "react";
 function JobListings({ data }) {
   return (
     <div>
+      <h1 className="align-top">Job Application Tracker</h1>
+      <p className="m-4">
+        You can use this tracker to input data on your job applications. Add the
+        company, role, salary, and current status.
+      </p>
+      <p className="m-4">
+        Times are tough right now. Keep your head up and remember that you are
+        not your job.
+      </p>
       <table className="w-full">
         <thead>
           <tr>
