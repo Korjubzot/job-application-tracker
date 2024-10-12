@@ -42,6 +42,7 @@ function App() {
       <Router>
         <div className="flex flex-col h-screen">
           <nav>
+            {/* TODO style this navbar to be horizontal and pretty */}
             <ul>
               <li>
                 <Link to="/tracker">Tracker</Link>

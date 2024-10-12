@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+
+// TODO style the signIn and signUp components
 
 const PasswordSignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +29,8 @@ const PasswordSignIn = () => {
         password
       );
       const user = userCredential.user;
-      console.log("User signed in:", user);
+      console.log("User signed in", user);
+      navigate("/tracker");
       setError(false);
       setErrorMessage("");
     } catch (err) {

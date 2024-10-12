@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase";
@@ -8,6 +8,8 @@ const PasswordSignUp = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +28,7 @@ const PasswordSignUp = () => {
       );
       const user = userCredential.user;
       console.log("User signed up:", user);
+      navigate("/tracker");
     } catch (err) {
       const errorMessage = err.message;
       const errorCode = err.code;
