@@ -5,6 +5,7 @@ import ProtectedRoute from "./protectedRoute";
 import { AuthProvider } from "./authProvider";
 import PasswordSignIn from "./components/signIn/signIn";
 import PasswordSignUp from "./components/signUp/signUp";
+import SignOutButton from "./components/signOut/signOutButton";
 
 let testData = [
   {
@@ -52,9 +53,7 @@ function App() {
                 <Link to="/signup">Sign Up</Link>
               </li>
               <li>
-                <button onClick={console.log("signing out...")}>
-                  Sign out
-                </button>
+                <SignOutButton />
               </li>
             </ul>
           </nav>
