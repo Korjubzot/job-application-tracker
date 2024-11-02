@@ -7,58 +7,46 @@ import PasswordSignIn from "./components/signIn/signIn";
 import PasswordSignUp from "./components/signUp/signUp";
 import SignOutButton from "./components/signOut/signOutButton";
 
-let testData = [
-  {
-    id: 0,
-    company: "Lionbridge",
-    role: "QA Engineer",
-    salary: "25PLN/hr",
-  },
-
-  {
-    id: 1,
-    company: "Starlike",
-    role: "Consultant",
-    salary: "10,000GBP/m",
-  },
-
-  {
-    id: 2,
-    company: "Vertigo",
-    role: "Chef",
-    salary: "9.50GBP/hr",
-  },
-  {
-    id: 3,
-    company: "The Vurger Co.",
-    role: "Kitchen Manager",
-    salary: "14GBP/hr",
-  },
-];
+import FirebaseTest from "./components/firebaseTest/firebaseTest";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="flex flex-col h-screen">
-          <nav>
+          <nav className="bg-gray-800 p-4">
             {/* TODO style this navbar to be horizontal and pretty */}
-            <ul>
+            <ul className="flex justify-around">
               <li>
-                <Link to="/tracker">Tracker</Link>
+                <Link
+                  to="/tracker"
+                  className="text-white hover:text-blue-400 active:text-blue-500"
+                >
+                  Tracker
+                </Link>
               </li>
               <li>
-                <Link to="/signin">Sign In</Link>
+                <Link
+                  to="/signin"
+                  className="text-white hover:text-blue-400 active:text-blue-500"
+                >
+                  Sign In
+                </Link>
               </li>
               <li>
-                <Link to="/signup">Sign Up</Link>
+                <Link
+                  to="/signup"
+                  className="text-white hover:text-blue-400 active:text-blue-500"
+                >
+                  Sign Up
+                </Link>
               </li>
               <li>
-                <SignOutButton />
+                <SignOutButton className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-500" />
               </li>
             </ul>
           </nav>
-
+          <FirebaseTest />
           <Routes>
             <Route path="/signin" element={<PasswordSignIn />} />
             <Route path="/signup" element={<PasswordSignUp />} />
@@ -66,7 +54,7 @@ function App() {
               path="/tracker"
               element={
                 <ProtectedRoute>
-                  <JobListings data={testData} />
+                  <JobListings />
                 </ProtectedRoute>
               }
             />

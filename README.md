@@ -54,3 +54,4 @@ You should now have a fully functional tracker.
 - [ ] Style navbar and signup/signin pages
 - [ ] Link to Firebase personal database storage
 - [ ] Expand testing suites for various
+- [ ] Import/export data in CSV format
